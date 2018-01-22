@@ -53,6 +53,7 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
     this.auth.currentUser.subscribe(a => {
       this.user = a
+      console.log(this.user)
     })
   }
 
