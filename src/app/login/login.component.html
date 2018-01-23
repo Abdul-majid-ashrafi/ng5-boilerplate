@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Login your credentials</h1>
+  <hr/>
+  <form [formGroup]="loginFormGroup" class="mlr-form" (ngSubmit)="loginUser(loginFormGroup.valid, loginFormGroup.value)" novalidate>
+
+    <div class="row">
+      <!-- email -->
+      <div class="form-group col-sm">
+        <label>Email address</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+        <div *ngIf="isFormSubmit && loginFormGroup.controls.email.invalid" class="error">
+          <p *ngIf="loginFormGroup.controls.email.errors.required">Email is required</p>
+        </div>
+      </div>
+      <!-- password -->
+      <div class="form-group col-sm">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        <div *ngIf="isFormSubmit && loginFormGroup.controls.password.invalid" class="error">
+          <p *ngIf="loginFormGroup.controls.password.errors.required">Password is required</p>
+        </div>
+      </div>
+
+      <div class="form-group col-sm">
+        <br/>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+      </div>
+    </div>
+
+  </form>
+  <!-- <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="auth.googleLogin()">Gmail Login</button> -->
+  
+  <div *ngIf="message" class="alert alert-primary" role="alert">
+    {{message}}
+  </div>
+
+</div>

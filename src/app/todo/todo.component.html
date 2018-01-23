@@ -1,0 +1,55 @@
+<div class="container">
+
+  <!-- Update todo -->
+  <div *ngIf="editTodo as edit; else add">
+    <h1>Editing....</h1>
+    <hr/>
+    <form (submit)="updateItem(updateTodo)">
+      <div class="row">
+        <div class="col-md-10">
+          <input class="form-control" type="text" placeholder="Write something here…" name="updateTodo" [(ngModel)]="updateTodo">
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success">Update todo</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br/>
+
+  <!-- Add Todo -->
+  <!-- <ng-template #add let-user> -->
+  <ng-template #add>
+    <form (submit)="addItem(todo)">
+      <h1>Add Todo</h1>
+      <hr/>
+      <div class="row">
+        <div class="col-md-10">
+          <input class="form-control" type="text" placeholder="Write something here…" name="todo" [(ngModel)]="todo">
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success">Add Todo</button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <br/>
+
+  <div class="list-group">
+    <li class="list-group-item list-group-item-action active">
+      Todo List
+    </li>
+    <li class="list-group-item list-group-item-action" *ngFor="let item of items | async">
+      <div class="row">
+        <div class="col-md-8">{{item.todo}}</div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-warning" (click)="editFucntion(item.id)">Edit</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-danger" (click)="removeItemFromList(item.id)">Delete</button>
+        </div>
+      </div>
+    </li>
+  </div>
+
+</div>

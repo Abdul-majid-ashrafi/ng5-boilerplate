@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Registration</h1>
+  <hr/>
+  <form [formGroup]="signupFormGroup" class="mlr-form" (ngSubmit)="createUser(signupFormGroup.valid, signupFormGroup.value)"
+    novalidate>
+
+    <div class="row">
+      <!-- username -->
+      <div class="form-group col-sm">
+        <label>User Name</label>
+        <input type="text" class="form-control" formControlName="userName" placeholder="Majid Ashraf">
+        <div *ngIf="isFormSubmit && signupFormGroup.controls.userName.invalid" class="error">
+          <p *ngIf="signupFormGroup.controls.userName.errors.required">Name is required</p>
+        </div>
+      </div>
+      <!-- email -->
+      <div class="form-group col-sm">
+        <label>Email address</label>
+        <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div *ngIf="isFormSubmit && signupFormGroup.controls.email.invalid" class="error">
+          <p *ngIf="signupFormGroup.controls.email.errors.required">Email is required</p>
+          <p *ngIf="signupFormGroup.controls.email.errors.pattern">Invalid email address</p>
+        </div>
+      </div>
+      <!-- password -->
+      <div class="form-group col-sm">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        <div *ngIf="isFormSubmit && signupFormGroup.controls.password.invalid" class="error">
+          <p *ngIf="signupFormGroup.controls.password.errors.required">Password is required</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- address -->
+      <div class="form-group col-sm">
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address" placeholder="how can we reach you?">
+      </div>
+      <!-- phone number -->
+      <div class="form-group col-sm">
+        <label>Cell Number</label>
+        <input type="text" class="form-control" formControlName="number" placeholder="how can we contact you?">
+      </div>
+
+      <div class="form-group col-sm">
+        <br/>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="message" class="alert alert-primary" role="alert">
+    {{message}}
+  </div>
+
+</div>
